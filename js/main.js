@@ -1,6 +1,6 @@
 var stage; 
 var cola;
-
+var band= true;
 //var n1, n2, n3;
 
 var planetList = null;
@@ -136,47 +136,106 @@ function onImagenesCompletadas(event)
     n3.name = datos.imagenes[2].id;
     escudo.name = datos.imagenes[3].id;
     
-    n1.height = 50;
-    n1.width = 70;
-    n2.height = 50;
-    n2.width = 70;
-    n3.height = 50;
-    n3.width = 70;
+    n1.x = stage.canvas.width/2 - 100 - 240 ;
+    n2.x = stage.canvas.width/2 -100;
+    n3.x = stage.canvas.width/2 -100 + 240 ;
+    n1.y = stage.canvas.height/2 + 30;
+    n2.y = stage.canvas.height/2 + 30;
+    n3.y = stage.canvas.height/2 + 30;
     
-    n1.x = stage.canvas.width/2 - 60 ;
-    n2.x = stage.canvas.width/2;
-    n3.x = stage.canvas.width/2 + 60 ;
-    n1.y = stage.canvas.height/2;
-    n2.y = stage.canvas.height/2;
-    n3.y = stage.canvas.height/2;
-    
-    //escudo.setBounds(0,0, 50,50); 
     escudo.x = stage.canvas.width/2 - 120;
-    escudo.y = 30;
-     
+    escudo.y = 20;
     
     n1.addEventListener('click', onN1Clicked);
     n2.addEventListener('click', onN2Clicked);
     n3.addEventListener('click', onN3Clicked);
     escudo.addEventListener('click', onEscudoClicked);
     
+    var info = new createjs.Text('Elecciones Liceo Galois 2014', "30px Arial", "black"); 
+    info.name = 'info_txt';
+    info.textAlign = 'center';
+    info.textBaseline = "top";
+    info.lineWidth = 400;
+    info.x = stage.canvas.width/2;
+    info.y = stage.canvas.height/2 - 50;
+
+    var t1 = new createjs.Text('01 - Jose Jimenez', "20px Arial", "black"); 
+    t1.name = 't1';
+    t1.textAlign = 'center';
+    t1.textBaseline = "top";
+    t1.lineWidth = 200;
+    t1.x = stage.canvas.width/2 - 100 - 135 ;
+    t1.y = stage.canvas.height/2 + 200;
+
+    var t2 = new createjs.Text('02 - Jose Jimenez', "20px Arial", "black"); 
+    t2.name = 't1';
+    t2.textAlign = 'center';
+    t2.textBaseline = "top";
+    t2.lineWidth = 200;
+    t2.x = stage.canvas.width/2;
+    t2.y = stage.canvas.height/2 + 200;
+
+    var t3 = new createjs.Text('03 - Jose Jimenez', "20px Arial", "black"); 
+    t3.name = 't1';
+    t3.textAlign = 'center';
+    t3.textBaseline = "top";
+    t3.lineWidth = 200;
+    t3.x = stage.canvas.width/2 + 100 + 135 ;
+    t3.y = stage.canvas.height/2 + 200;
+
+    var state = new createjs.Text('01 - Jose Jimenez', "20px Arial", "black"); 
+    state.name = 'state';
+    state.textAlign = 'center';
+    state.textBaseline = "top";
+    state.lineWidth = 200;
+    state.x = stage.canvas.width/2 -100 ;
+    state.y = stage.canvas.height -50;
+    
     stage.enableMouseOver();
     stage.addChild(n1);
     stage.addChild(n2);
     stage.addChild(n3);
     stage.addChild(escudo);
-    
-    
+    stage.addChild(info);
+    stage.addChild(t1);
+    stage.addChild(t2);
+    stage.addChild(t3);
+    stage.addChild(state);
            
 }
 
 function onEscudoClicked(event){
-    alert("Esooo");
+   var info = stage.getChildByName('state');
+    info.text = 'Escoge un candidato Rapido ;)';
+    info.color ='blue';
 }
 
 function onN1Clicked(){
-    
-    alert("n1");
+    if (band == true){
+        var info = stage.getChildByName('state');
+        info.text = 'Espere confirmación del Voto... (Cargando)';
+        info.color ='blue';
+        var candidato = "01";
+        var url="http://controlacademico.liceogalois.com/administrador/guardarVoto";
+        var data="candidato="+candidato;
+        envioJson(url,data,function respuesta(res){               
+            if (res==1){
+                band=true;
+                info.text = 'Voto Guardado Correctamente';
+                info.color ='green';
+                setTimeout(function() {
+                    band=false;
+                }, 2000);
+                
+            }else{
+               info.text = 'Error al guardar Voto... Intente nuevamente';
+                info.color ='red'; 
+            }
+            
+         }); 
+     }else{
+         alert('ojoooo');
+     }
 }
 
 function onN2Clicked(){
