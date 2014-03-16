@@ -220,11 +220,11 @@ function onN1Clicked(){
         var data="candidato="+candidato;
         envioJson(url,data,function respuesta(res){               
             if (res==1){
-                band=true;
+                band=false;
                 info.text = 'Voto Guardado Correctamente';
                 info.color ='green';
                 setTimeout(function() {
-                    band=false;
+                    band=true;
                 }, 2000);
                 
             }else{
