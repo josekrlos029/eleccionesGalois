@@ -225,6 +225,8 @@ function onN1Clicked(){
                 info.color ='green';
                 setTimeout(function() {
                     band=true;
+                    info.text = '...';
+                    info.color ='black';
                 }, 2000);
                 
             }else{
@@ -234,16 +236,71 @@ function onN1Clicked(){
             
          }); 
      }else{
-         alert('ojoooo');
+         info.text = 'Error No puede Votar Dos Veces';
+                info.color ='red'; 
      }
 }
 
 function onN2Clicked(){
-    alert("n2");
+    if (band == true){
+        var info = stage.getChildByName('state');
+        info.text = 'Espere confirmación del Voto... (Cargando)';
+        info.color ='blue';
+        var candidato = "02";
+        var url="http://controlacademico.liceogalois.com/administrador/guardarVoto";
+        var data="candidato="+candidato;
+        envioJson(url,data,function respuesta(res){               
+            if (res==1){
+                band=false;
+                info.text = 'Voto Guardado Correctamente';
+                info.color ='green';
+                setTimeout(function() {
+                    band=true;
+                    info.text = '...';
+                    info.color ='black';
+                }, 2000);
+                
+            }else{
+               info.text = 'Error al guardar Voto... Intente nuevamente';
+                info.color ='red'; 
+            }
+            
+         }); 
+     }else{
+         info.text = 'Error No puede Votar Dos Veces';
+                info.color ='red'; 
+     }
 }
 
 function onN3Clicked(){
-    alert("n3");
+    if (band == true){
+        var info = stage.getChildByName('state');
+        info.text = 'Espere confirmación del Voto... (Cargando)';
+        info.color ='blue';
+        var candidato = "03";
+        var url="http://controlacademico.liceogalois.com/administrador/guardarVoto";
+        var data="candidato="+candidato;
+        envioJson(url,data,function respuesta(res){               
+            if (res==1){
+                band=false;
+                info.text = 'Voto Guardado Correctamente';
+                info.color ='green';
+                setTimeout(function() {
+                    band=true;
+                    info.text = '...';
+                    info.color ='black';
+                }, 2000);
+                
+            }else{
+               info.text = 'Error al guardar Voto... Intente nuevamente';
+                info.color ='red'; 
+            }
+            
+         }); 
+     }else{
+         info.text = 'Error No puede Votar Dos Veces';
+                info.color ='red'; 
+     }
 }
 function refreshGame(e)
     {
