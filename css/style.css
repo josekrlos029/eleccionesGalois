@@ -1,0 +1,23 @@
+html, body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #000;
+}
+
+#juego {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 970px;
+    height: 662px;
+    margin-top: -331px;
+    margin-left: -485px;
+    background-color: #fff;
+}
+
+#canvasJuego {
+    width: 100%;
+    height: 100%;
+}

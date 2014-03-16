@@ -1,0 +1,20 @@
+{
+    "imagenes": [
+        {
+            "id": "01",
+            "src": "http://liceogalois.com/controlacademico/utiles/imagenes/elecciones/01.png"
+        },
+        {
+            "id": "02",
+            "src": "http://liceogalois.com/controlacademico/utiles/imagenes/elecciones/01.png"
+        },
+        {
+            "id": "03",
+            "src": "http://liceogalois.com/controlacademico/utiles/imagenes/elecciones/01.png"
+        },
+        {
+            "id": "escudo",
+            "src": "http://liceogalois.com/controlacademico/utiles/imagenes/escudo.png"
+        }
+    ]
+}
