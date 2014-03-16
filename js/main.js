@@ -25,8 +25,8 @@ function init()
     createjs.Ticker.setFPS(FPS);
     createjs.Ticker.addEventListener("tick", $.proxy(refreshGame, this) );
 
-    //window.addEventListener("resize", $.proxy(onResizeViewPort, this), false);
-    //window.addEventListener("orientationChange", $.proxy(onResizeViewPort, this), false);
+    window.addEventListener("resize", $.proxy(onResizeViewPort, this), false);
+    window.addEventListener("orientationChange", $.proxy(onResizeViewPort, this), false);
     cola.loadFile({src:'data/data.json', id:'imageList', type:createjs.LoadQueue.JSON});
     cola.addEventListener("fileload", onDatosCargados);
     
