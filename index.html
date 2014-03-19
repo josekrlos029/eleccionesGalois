@@ -2,27 +2,54 @@
 <head>
 	<meta charset="utf-8">
 	<title>Elecciones 2014 Liceo Galois</title>
-        <link href="css/style.css" rel="stylesheet" type="text/css" media="screen"/>
-        <script src="js/easeljs.min.js"></script>
-        <script src="js/soundjs.min.js"></script>
-        <script src="js/tweenjs.min.js"></script>
-        <script src="js/preloadjs.min.js"></script>
-        <script src="js/createjs.min.js"></script>
         <script src="js/jquery-1.11.0.min.js"></script>
         <script src="js/envios.js"></script>
-        <script src="js/main.js"></script>
+        
         <script src="phonegap.js"></script>
-        <script> 
-            $(document).ready(function(){
-                init();
-                onResizeViewPort();
+        <script>
+            $(document).ready(function (){
+            
+            var band = true;
+            carga();
+            
+            function carga(){
+                $("#carga").load("http://controlacademico.liceogalois.com/administrador/eleccionesMovil");
+            }
+        
+            function guardar(candidato){
+                if (band == true){
+       
+                    var url="http://controlacademico.liceogalois.com/administrador/guardarVoto";
+                    var data="candidato="+candidato;
+                    envioJson(url,data,function respuesta(res){               
+                        if (res==1){
+                            band=false;
+                            
+                            
+                            setTimeout(function() {
+                                band=true;
+                                
+                            }, 5000);
+
+                        }else{
+                           info.text = 'Error al guardar Voto... Intente nuevamente';
+                            info.color ='red'; 
+                        }
+
+                     }); 
+                 }else{
+                     info.text = 'Error No puede Votar Dos Veces';
+                            info.color ='red'; 
+                 }
+}
             });
+            
         </script>
 </head>
 
 <body >
-	<div id="juego">
-            <canvas id="canvasJuego" width="970" height="662">No Es soportado el Canvas</canvas>	
+	<div id="carga">
+            Bienvenido.. Cargando
 	</div>
 </body>
 </html>
