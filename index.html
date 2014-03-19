@@ -24,22 +24,23 @@
                     envioJson(url,data,function respuesta(res){               
                         if (res==1){
                             band=false;
-                            
-                            
+                            $("#texto").html("Voto Guardado Correctamente");
+                            $("#texto").css("color","green");
                             setTimeout(function() {
                                 band=true;
-                                
+                                $("#texto").html("Voto Preparado...");
+                                $("#texto").css("color","black");
                             }, 5000);
 
                         }else{
-                           info.text = 'Error al guardar Voto... Intente nuevamente';
-                            info.color ='red'; 
+                           $("#texto").html('Error al guardar Voto... Intente nuevamente');
+                            $("#texto").css("color","red");
                         }
 
                      }); 
                  }else{
-                     info.text = 'Error No puede Votar Dos Veces';
-                            info.color ='red'; 
+                     $("#texto").html('Error No puede Votar Dos Veces');
+                      $("#texto").css("color","red");
                  }
 }
             });
